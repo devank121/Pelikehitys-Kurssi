@@ -20,7 +20,7 @@ class Nuoli
     public PeranTyyppi Pera { get; }   // same thing but with the back types
     public int Pituus { get; }         //gets the height from the user with the constructorgit
 
-    public Nuoli(KarkiTyyppi karki, PeranTyyppi pera, int pituus)  //the contruto, gets the answers from the user and saves it in a temporarry varieble
+    private Nuoli(KarkiTyyppi karki, PeranTyyppi pera, int pituus)  //the contruto, gets the answers from the user and saves it in a temporarry varieble
     {
         Karki = karki;
         Pera = pera;
