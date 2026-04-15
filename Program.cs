@@ -20,31 +20,61 @@ class Tavara
 class Nuoli : Tavara
 {
     public Nuoli() : base(0.1f, 0.05f) { }
+
+    public override string ToString()
+    {
+        return "Nuoli";
+    }
 }
 
 class Jousi : Tavara
 {
     public Jousi() : base(1.0f, 4.0f) { }
+
+    public override string ToString()
+    {
+        return "Jousi";
+    }
 }
 
 class Köysi : Tavara
 {
     public Köysi() : base(1.0f, 1.5f) { }
+
+    public override string ToString()
+    {
+        return "Köysi";
+    }
 }
 
 class Vesi : Tavara
 {
     public Vesi() : base(2.0f, 2.0f) { }
+
+    public override string ToString()
+    {
+        return "Vesi";
+    }
 }
 
 class RuokaAnnos : Tavara
 {
     public RuokaAnnos() : base(1.0f, 0.5f) { }
+
+    public override string ToString()
+    {
+        return "Ruoka-annos";
+    }
 }
 
 class Miekka : Tavara
 {
     public Miekka() : base(5.0f, 3.0f) { }
+
+    public override string ToString()
+    {
+        return "Miekka";
+    }
 }
 
 // BACKPACK CLASS
@@ -58,7 +88,7 @@ class Reppu
 
     public Reppu(int maksimiMaara, float maksimiPaino, float maksimiTilavuus)
     {
-        this.maksimiMaara = maksimiMaara;  // this. makes it so the code knows that it is THIS objects parameter. 
+        this.maksimiMaara = maksimiMaara;
         this.maksimiPaino = maksimiPaino;
         this.maksimiTilavuus = maksimiTilavuus;
     }
@@ -75,9 +105,9 @@ class Reppu
         get
         {
             float yhteensa = 0f; //sets the bag to 0 first
-            foreach (Tavara t in tavarat)  //t is just a temp veriable
+            foreach (Tavara t in tavarat)  //t is just a temp variable
             {
-                yhteensa += t.Paino;  
+                yhteensa += t.Paino;
             }
             return yhteensa;
         }
@@ -117,6 +147,27 @@ class Reppu
         return true;
     }
 
+    // Returns the backpack contents as a string
+    public override string ToString()
+    {
+        if (tavarat.Count == 0)
+        {
+            return "Reppu on tyhjä.";
+        }
+
+        string sisalto = "Reppussa on seuraavat tavarat: ";
+
+        foreach (Tavara t in tavarat)
+        {
+            sisalto += t.ToString() + ", ";
+        }
+
+        // Remove the trailing ", " from the end
+        sisalto = sisalto.TrimEnd(',', ' ');
+
+        return sisalto;
+    }
+
     // Print the current backpack status
     public void NäytäTila()
     {
@@ -138,6 +189,9 @@ class Program
     {
         // Create backpack with limits: 10 items, 10kg, 15L
         Reppu reppu = new Reppu(10, 10.0f, 15.0f);
+
+        // Print backpack contents before the menu starts
+        Console.WriteLine(reppu.ToString());
 
         bool running = true;
 
